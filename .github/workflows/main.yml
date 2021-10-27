@@ -1,0 +1,43 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: sudo apt-get update && sudo apt-get install -y ffmpeg sox
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Cache Mozilla pre-trained models.
+      uses: actions/cache@v2.1.6
+      with:
+        # A list of files, directories, and wildcard patterns to cache and restore
+        path: models/
+        # An explicit key for restoring and saving the cache
+        key: ${{ runner.os }}-${{ hashFiles('**/models') }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        make init
+        pip install .[dev]
+        pip install mypy pytest
+    - name: Run static type checking with mypy
+      run: |
+        make lint
+    - name: Test with pytest
+      run: |
+        pytest -v -x --skip-integration tests/

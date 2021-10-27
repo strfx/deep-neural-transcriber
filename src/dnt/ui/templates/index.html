@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Transcribe a Lecture Recording</h1>
+            <p class="lead text-muted">
+                Automatically generate subtitles to your recorded lecture.
+                The Deep Neural Transcriber leverages state-of-the-art speech recognition and machine translation
+                technology to produce high-quality subtitles for your lecture.
+            </p>
+
+            <form method="POST" action="/transcribe" enctype="multipart/form-data">
+                <p>
+                    <input type="file" class="form-control" name="video" accept=".mp4">
+                </p>
+
+                <p>
+                    <select name="model" class="form-select">
+                        <option value="" disabled selected>Select a model...</option>
+                        {% for model in available_models %}
+                        <option value="{{ model }}">{{ model }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+                <p>
+
+                    <button id="spinner" class="btn btn-primary" type="button" disabled style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Transcribing...
+                    </button>
+
+                    <input id="submit" onclick="toggleSpinner()" class="btn btn-primary" type="submit" value="Submit">
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleSpinner() {
+        submitButton = document.getElementById('submit')
+        spinner = document.getElementById('spinner')
+
+        submitButton.style.display = "none";
+        spinner.style.display = "inline";
+    }
+</script>
+{% endblock %}

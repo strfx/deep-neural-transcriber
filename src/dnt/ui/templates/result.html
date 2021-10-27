@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="py-5 container" style="padding-top: 1.5em!important;">
+    <div class="row">
+        <div>
+            <div>
+                <div class="border-bottom">
+                    <h3 class="fw-bold">Transcription Finished</h3>
+                </div>
+
+                <div class="row pt-4">
+                    <div class="col-sm-7">
+                        <div class="container">
+                            <video id="video" controls preload="metadata" class="border rounded-3 shadow-lg mb-4">
+                                <source src="{{ video }}" type="video/mp4">
+                                <track label="English" kind="subtitles" srclang="en" src="{{ vtt['en'] }}" default>
+                                <track label="Deutsch" kind="subtitles" srclang="de" src="{{ vtt['de'] }}">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5">
+                        <p class="lead">
+                            The Deep Neural Transcriber has transcribed your video. Using the model "{{
+                            model }}", it took {{ duration }} seconds to process the video. Download the subtitle files
+                            below:
+                        </p>
+
+                        <a href="{{ srt['de'] }}"><span class="badge bg-primary">SRT: German</span></a>
+                        <a href="{{ srt['en'] }}"><span class="badge bg-primary">SRT: English</span></a>
+                        <a href="{{ vtt['de'] }}"><span class="badge bg-primary">VTT: German</span></a>
+                        <a href="{{ vtt['en'] }}"><span class="badge bg-primary">VTT: English</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+.icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+}
+
+.icon-audio {
+  background-image: url(static/images/sound-waves.svg);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+
+.footer a {
+    color: inherit;
+}
+
+/* Subtle links for the footer */
+.subtle-link {
+  text-decoration: none;
+  font-style: italic;
+}
+
+.lead {
+  text-align: justify;
+}
+
+video {
+  /* override other styles to make responsive */
+  width: 100%;
+  height: auto   !important;
+}

@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+    deepspeech-train:
+        image: mozilla/deepspeech-train:v0.9.3
+        command: >
+            python3 DeepSpeech.py
+                --test_files deepspeech-data/deepspeech-0.9.3-eval/data/test/test.csv
+                --checkpoint_dir deepspeech-data/deepspeech-0.9.3-eval/checkpoint
+        volumes:
+          - type: bind
+            source: ./deepspeech-data
+            target: /DeepSpeech/deepspeech-data

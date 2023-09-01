@@ -7,7 +7,7 @@
 
 <p align="center">  
   <a href="https://github.com/strfx/deep-neural-transcriber/actions" target="_blank">
-    <img src="https://img.shields.io/github/workflow/status/strfx/deep-neural-transcriber/build" />
+    <img src="https://img.shields.io/github/actions/workflow/status/strfx/deep-neural-transcriber/main.yml?branch=main" />
   </a>
   <a href="https://github.com/strfx/deep-neural-transcriber/blob/main/LICENSE" target="_blank">
      <img src="https://img.shields.io/badge/License-MIT-blue.svg" />
